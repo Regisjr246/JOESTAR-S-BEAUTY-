@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ServicoFormRequest extends FormRequest
+class ServicoFormRequestUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class ServicoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'=>'required|max:80|min:5|unique:servicos,nome',  
-            'preco'=>'required|decimal:2',
-            'duracao'=>'required|numeric',  
-            'descricao'=>'required|max:200|min:10',
+            'nome'=>'max:80|min:5|unique:servicos,nome,'. $this->id,
+            'preco'=>'decimal:2',
+            'duracao'=>'numeric',  
+            'descricao'=>'max:200|min:10',
             
         ];
     }
@@ -44,7 +44,7 @@ class ServicoFormRequest extends FormRequest
         return[
             'nome.required'=> 'O campo nome é obrigatorio',
     'nome.max'=> 'O campo nome deve conter no maximo 80 caracteres',
-    'nome.max'=> 'O campo nome deve conter no manimo 5 caracteres',
+    'nome.max'=> 'O campo nome deve conter no minimo 5 caracteres',
     'preco.required'=> 'Preço obrigatorio',
     
     'duracao.required'=>'Duracao obrigatorio',
@@ -52,10 +52,8 @@ class ServicoFormRequest extends FormRequest
     
     'descricao.required'=>'Descrição obrigatorio',
     'descricao.max'=>'Descricao deve conter no maximo 200 caracteres',
-    'descricao.min'=>'Descricao deve conter no manimo 5 caracteres'
+    'descricao.min'=>'Descricao deve conter no manimo 0 caracteres'
     
         ];
     }
-
-
 }
