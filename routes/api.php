@@ -31,5 +31,9 @@ Route::post('cadastrar', [ServicoController::class,  'servico']);
 //BUSCAR POR NOME
 Route::get('buscar/{nome}', [ServicoController::class, 'PesquisarPorNome']);
 
+
+//BUSCAR POR DESCRICAO
+Route::get('pesquisar/{descricao}', [ServicoController::class, 'pesquisarPorDescricao']);
+
 //ATUALIZAR O SERVIÇO
 Route::put('update', [ServicoController::class,  'update']);

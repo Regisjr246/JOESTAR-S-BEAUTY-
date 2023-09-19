@@ -44,7 +44,7 @@ class ServicoFormRequestUpdate extends FormRequest
         return[
             'nome.required'=> 'O campo nome é obrigatorio',
     'nome.max'=> 'O campo nome deve conter no maximo 80 caracteres',
-    'nome.max'=> 'O campo nome deve conter no minimo 5 caracteres',
+    'nome.min'=> 'O campo nome deve conter no minimo 5 caracteres',
     'preco.required'=> 'Preço obrigatorio',
     
     'duracao.required'=>'Duracao obrigatorio',

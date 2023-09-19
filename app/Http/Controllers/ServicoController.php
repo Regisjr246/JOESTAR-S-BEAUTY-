@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class ServicoController extends Controller
 {
+
+    //CADASTRO DE SERVICO 
     public function servico(ServicoFormRequest $request)
     {
 
@@ -31,7 +33,7 @@ class ServicoController extends Controller
 
 
     //PESQUISA POR NOME
-    public function PesquisarPorNome(Request $request)
+    public function pesquisarPorNome(Request $request)
     {
         $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
 
@@ -48,6 +50,33 @@ class ServicoController extends Controller
             'data' => "Nome não encontrada"
         ]);
     }
+
+
+
+
+
+
+ //PESQUISA POR DESCRICAO
+ public function pesquisarPorDescricao(Request $request)
+ {
+     $servico = Servico::where('descricao', 'like', '%' . $request->descricao . '%')->get();
+
+     if (count($servico) > 0) {
+         return response()->json([
+             'status' => true,
+             'data' => $servico
+
+         ]);
+     }
+
+     return response()->json([
+         'status' => false,
+         'data' => "Descricao não encontrado"
+     ]);
+ }
+
+
+
 
 
 

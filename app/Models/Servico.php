@@ -14,7 +14,8 @@ protected $fillable=[
     'nome',
     'preco',
     'descricao',
-    'duracao'
+    'duracao',
+    'descricao',
 ];
 
 
