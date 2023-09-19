@@ -10,7 +10,7 @@ class Cliente extends Model
     use HasFactory;
 
 
-    protected $fillable=[
+    protected $fillable = [
 
         'nome',
         'celular',
@@ -21,12 +21,11 @@ class Cliente extends Model
         'estado',
         'pais',
         'rua',
-            'numero',
-            'bairro',
-            'cep',
-            'complemento',
-            'senha'
-    
-    ];
+        'numero',
+        'bairro',
+        'cep',
+        'complemento',
+        'senha'
 
+    ];
 }
