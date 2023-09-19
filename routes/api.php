@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+//CADASTRO DE SERVIÇO:
 
 //DELETAR SERVIÇO
-Route::delete('delete/{id}',[ServicoController::class, 'excluir']);
+Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 
 
 //CADASTRAR SERVIÇP
@@ -28,7 +29,7 @@ Route::post('cadastrar', [ServicoController::class,  'servico']);
 
 
 
-//BUSCAR POR NOME
+//BUSCAR POR SERVIÇO
 Route::get('buscar/{nome}', [ServicoController::class, 'PesquisarPorNome']);
 
 
@@ -37,3 +38,42 @@ Route::get('pesquisar/{descricao}', [ServicoController::class, 'pesquisarPorDesc
 
 //ATUALIZAR O SERVIÇO
 Route::put('update', [ServicoController::class,  'update']);
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//CADASTRO DE CLIENTES:
+
+//DELETAR CLIENTE
+Route::delete('excluir/{id}', [ClienteController::class, 'deletar']);
+
+
+//CADASTRAR CLIENTE
+Route::post('cadastro', [ClienteController::class,  'castroCliente']);
+
+
+
+
+//BUSCAR POR CLIENTE
+Route::get('buscar/{nome}', [ClienteController::class, 'pesquisarPorCliente']);
+
+
+//BUSCAR POR CPF
+Route::get('CPF/{cpf}', [ClienteController::class, 'pesquisarPorCpf']);
+
+//BUSCAR POR CELULAR
+Route::get('telefone/{celular}', [ClienteController::class, 'PesquisarPorCelular']);
+
+
+//BUSCAR POR EMAIL
+Route::get('email/{descricao}', [ClienteController::class, 'PesquisarPorEmail']);
+
+
+//BUSCAR POR CEP
+Route::get('cep/{cep}', [ClienteController::class, 'pesquisarPorCep']);
+
+
+
+//ATUALIZAR O SERVIÇO
+Route::put('updateCliente', [ClienteController::class,  'updateCliente']);

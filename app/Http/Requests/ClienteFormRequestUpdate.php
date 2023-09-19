@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ClienteFormRequest extends FormRequest
+class ClienteFormRequestUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,27 +25,28 @@ class ClienteFormRequest extends FormRequest
     {
         return [
 
-            'nome'=>'required|max:120|min:5',
-            'celular'=>'required|unique:cliente,celular|max:11|min:10',
-            'email'=>'required|unique:cliente,emaail|max:120',
-            'cpf'=>'required|unique:cpf,cpf|max:11|min:11',
-            'dataNascimento'=>'required',
-            'cidade'=>'required|max:120',
-            'estado'=>'required|max:2|min:2',
-            'pais'=>'required|max:80|min:5',
-            'rua'=>'required|max:120|min:5',
-                'numero'=>'required|max:10',
-                'bairro'=>'required|max:100|',
-                'cep'=>'required|max:8|min:8',
-                'complemento'=>'required|max:150|',
-                'senha'=>'required|'
 
+                'nome'=>'required|max:120|min:5',
+                'celular'=>'required|unique:cliente,celular|max:11|min:10',
+                'email'=>'required|unique:cliente,emaail|max:120',
+                'cpf'=>'required|unique:cpf,cpf|max:11|min:11',
+                'dataNascimento'=>'required',
+                'cidade'=>'required|max:120',
+                'estado'=>'required|max:2|min:2',
+                'pais'=>'required|max:80|min:5',
+                'rua'=>'required|max:120|min:5',
+                    'numero'=>'required|max:10',
+                    'bairro'=>'required|max:100|',
+                    'cep'=>'required|max:8|min:8',
+                    'complemento'=>'required|max:150|',
+                    'senha'=>'required|'
         ];
     }
 
 
 
-public function failedValidation(Validator $validator){
+public function failedValidationtion(Validator $validator){
+    
 
     throw new HttpResponseException
     ( response()->json([
@@ -68,7 +69,7 @@ public function messages(){
         'celular.required'=>'O campo celular é obrigatorio',
         'celular.min'=>'O campo celular deve conter no minimo 11caracteres',
         'celular.max'=>'O campo celular deve conter no maximo 11 caracteres',
-        'celular.unique'=>'Celular já cadastrado, informe outro',
+        'celular.unique'=>'Celular já cadastrado, informe outr ',
         
 //EMAIL
         'email.required'=>'O email celular é obrigatorio',
@@ -140,3 +141,4 @@ public function messages(){
 
 
 }
+
