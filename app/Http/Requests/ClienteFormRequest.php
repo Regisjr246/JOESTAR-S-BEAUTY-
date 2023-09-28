@@ -29,7 +29,7 @@ class ClienteFormRequest extends FormRequest
                         'celular' => 'required|max:11|min:10',
                         'email' => 'required|unique:clientes,email|max:120',
                         'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
-                        'dataNascimento' => 'required',
+                        'dataNascimento' => 'required|date',
                         'cidade' => 'required|max:120',
                         'estado' => 'required|max:2|min:2',
                         'pais' => 'required|max:80|min:5',
@@ -38,7 +38,7 @@ class ClienteFormRequest extends FormRequest
                         'bairro' => 'required|max:100|',
                         'cep' => 'required|max:8|min:8',
                         'complemento' => 'required|max:150|',
-                        'senha' => 'required|'
+                        'password' => 'required|'
 
                 ];
         }
@@ -75,7 +75,7 @@ class ClienteFormRequest extends FormRequest
                         'email.required' => 'O email celular é obrigatorio',
                         'email.unique' => 'Email já cadastrado informe outro email',
                         'email.max' => 'O email celular de conter 120 caracteres',
-
+ 
                         //CPF
                         'cpf.required' => 'O campo cpf é obrigatorio',
                         'cpf.max' => 'O campo cpf deve ter no maximo 11 caracteres',
@@ -84,11 +84,11 @@ class ClienteFormRequest extends FormRequest
 
                         //DATA DE NASCIMENTO        
                         'dataNascimento.required' => 'O campo data de nascimento é obrigatorio',
-                        'dataNascimento.required' => 'O campo data de nascimento só deve conter numeros',
+                        'dataNascimento.date' => 'O campo data de nascimento de estar no formato de data ex:12/04/2000',
 
                         //CIDADE        
                         'cidade.required' => 'O campo cidade é obrigatorio',
-                        'cidade.required' => 'O campo cidade deve conter no maximo 120 caracteres',
+                        'cidade.max' => 'O campo cidade deve conter no maximo 120 caracteres',
 
 
                         //ESTADO
@@ -124,7 +124,7 @@ class ClienteFormRequest extends FormRequest
                         'complemento.max' => 'O campo complemento deve conter no maximo 150',
 
                         //SENHA       
-                        'senha.required' => 'O campo senha é obrigatorio'
+                        'password.required' => 'O campo senha é obrigatorio'
 
 
 

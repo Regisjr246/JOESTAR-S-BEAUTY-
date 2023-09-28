@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('celular',11)->nullable(false);
             $table->string('email',120)->nullable(false);
             $table->string('cpf',11)->nullable(false);
-            $table->date('dataNascimento');
+            $table->date('dataNascimento')->nullable(false);
             $table->string('cidade',120)->nullable(false);
             $table->string('estado',2)->nullable(false);
             $table->string('pais',80)->nullable(false);
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('bairro',100)->nullable(false);
             $table->string('cep', 8)->nullable(false);
             $table->string('complemento',150)->nullable(false);
-            $table->string('senha')->nullable(false);
+            $table->string('password')->nullable(false);
             
             $table->timestamps();
         });

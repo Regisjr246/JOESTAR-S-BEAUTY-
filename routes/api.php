@@ -56,7 +56,7 @@ Route::post('cadastro', [ClienteController::class,  'castroCliente']);
 
 
 //BUSCAR POR CLIENTE
-Route::get('buscar/{nome}', [ClienteController::class, 'pesquisarPorCliente']);
+Route::get('cliente/{nome}', [ClienteController::class, 'pesquisarPorCliente']);
 
 
 //BUSCAR POR CPF
@@ -75,5 +75,5 @@ Route::get('cep/{cep}', [ClienteController::class, 'pesquisarPorCep']);
 
 
 
-//ATUALIZAR O SERVIÇO
-Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
+//ATUALIZAR FICHA DE CLIENTE
+Route::put('ataulizarCliente', [ClienteController::class,  'updateCliente']);

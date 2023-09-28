@@ -30,7 +30,7 @@ class ClienteFormRequestUpdate extends FormRequest
                         'celular' => 'required|max:11|min:10',
                         'email' => 'required|unique:clientes,email|max:120',
                         'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
-                        'dataNascimento' => 'required',
+                        'dataNascimento' => 'required|date',
                         'cidade' => 'required|max:120',
                         'estado' => 'required|max:2|min:2',
                         'pais' => 'required|max:80|min:5',
@@ -39,7 +39,7 @@ class ClienteFormRequestUpdate extends FormRequest
                         'bairro' => 'required|max:100|',
                         'cep' => 'required|max:8|min:8',
                         'complemento' => 'required|max:150|',
-                        'senha' => 'required|'
+                        'password' => 'required|'
                 ];
         }
 
@@ -125,7 +125,7 @@ class ClienteFormRequestUpdate extends FormRequest
                         'complemento.max' => 'O campo complemento deve conter no maximo 150',
 
                         //SENHA       
-                        'senha.required' => 'O campo senha é obrigatorio'
+                        'password.required' => 'O campo senha é obrigatorio'
 
 
 

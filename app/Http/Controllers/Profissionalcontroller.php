@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClienteFormRequest;
+use App\Http\Requests\ProfissionalFormRequest;
 use App\Http\Requests\ClienteFormRequestUpdate;
 use App\Http\Requests\ServicoFormRequestUpdate;
 use App\Models\Cliente;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,10 +18,10 @@ class ClienteController extends Controller
     //CADASTRO DE CLIENTE
 
 
-    public function castroCliente(ClienteFormRequest $request)
+    public function castroProfissional(  ProfissionalFormRequest $request)
     {
 
-        $cliente = Cliente::create([
+        $profissional = Cliente::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email' => $request->email,
@@ -34,12 +35,13 @@ class ClienteController extends Controller
             'bairro' => $request->bairro,
             'cep' => $request->cep,
             'complemento' => $request->complemento,
-            'password' => Hash::make( $request->password)
+            'password' => Hash::make( $request->password),
+            'salario'=>$request->salario
         ]);
         return response()->json([
             "success" => true,
             "message" => "Cliente cadastrado com sucesso",
-            "data" => $cliente
+            "data" => $profissional
         ], 200);
     }
 
@@ -47,18 +49,18 @@ class ClienteController extends Controller
 
     //PESQUISA POR NOME
 
-    public function pesquisarPorCliente(Request $request)
+    public function pesquisarPorNome(Request $request)
     {
 
 
-        $cliente = Cliente::where('nome', 'like', '%' . $request->nome . '%')->get();
+        $profissional = Profissional::where('nome', 'like', '%' . $request->nome . '%')->get();
 
 
-        if (count($cliente)) {
+        if (count($profissional)) {
 
             return response()->json([
                 'status' => true,
-                'data' => $cliente
+                'data' => $profissional
             ]);
         }
 
@@ -75,12 +77,12 @@ class ClienteController extends Controller
     {
 
 
-        $cliente = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+        $profissional = Profissional::where('cpf', 'like', '%' . $request->cpf . '%')->get();
 
-        if (count($cliente) > 0) {
+        if (count($profissional) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $cliente
+                'data' => $profissional
             ]);
         }
 
@@ -97,12 +99,12 @@ class ClienteController extends Controller
     {
 
 
-        $cliente = Cliente::where('celular', 'like', '%' . $request->celular . '%')->get();
+        $profissional = Profissional::where('celular', 'like', '%' . $request->celular . '%')->get();
 
-        if (count($cliente) > 0) {
+        if (count($profissional) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $cliente
+                'data' => $profissional
             ]);
         }
 
@@ -119,12 +121,12 @@ class ClienteController extends Controller
     {
 
 
-        $cliente = Cliente::where('email', 'like', '%' . $request->email . '%')->get();
+        $profissional = Profissional::where('email', 'like', '%' . $request->email . '%')->get();
 
-        if (count($cliente) > 0) {
+        if (count($profissional) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $cliente
+                'data' => $profissional
             ]);
         }
 
@@ -136,38 +138,18 @@ class ClienteController extends Controller
     }
 
 
-    //PESQUISA POR CEP
-    public function PesquisarPorCep(Request $request)
-    {
-
-
-        $cliente = Cliente::where('cep', 'like', '%' . $request->cep . '%')->get();
-
-        if (count($cliente) > 0) {
-            return response()->json([
-                'status' => true,
-                'data' => $cliente
-            ]);
-        }
-
-
-        return response()->json([
-            'status' => false,
-            'data' => "Cep não encontrado"
-        ]);
-    }
 
 
 
- //ATUALIZAÇÃO DE CLIENTE
+ //ATUALIZAÇÃO DO PROFISSIONAL
 
 
 
- public function updateCliente(ClienteFormRequestUpdate $request)
+ public function updateCliente(ProfissionalFormRequesttUpdate $request)
  {
 
 
-     $cliente= Cliente::find($request->id);
+     $profissional= Profissional::find($request->id);
 
      if (!isset($cliente)) {
          return response()->json([
@@ -178,65 +160,69 @@ class ClienteController extends Controller
 
 
      if (isset($request->nome)) {
-         $cliente->nome = $request->nome;
+        $profissional->nome = $request->nome;
      }
 
      if (isset($request->email)) {
-         $cliente->email = $request->email;
+         $profissional->email = $request->email;
      }
 
      if (isset($request->cpf)) {
-         $cliente->cpf = $request->cpf;
+         $profissional->cpf = $request->cpf;
      }
 
      if (isset($request->senha)) {
-         $cliente->senha = $request->senha;
+         $profissional->senha = $request->senha;
      }
 
      if (isset($request->dataNascimento)) {
-        $cliente->sdataNascimento = $request->sdataNascimento;
+        $profissional->sdataNascimento = $request->sdataNascimento;
     }
 
     if (isset($request->cep)) {
-        $cliente->cep = $request->cep;
+        $profissional->cep = $request->cep;
     }
 
 
     if (isset($request->celular)) {
-        $cliente->celular = $request->celular;
+        $profissional->celular = $request->celular;
     }
 
     if (isset($request->numero)) {
-        $cliente->numero = $request->numero;
+        $profissional->numero = $request->numero;
     }
     if (isset($request->estado)) {
-        $cliente->estado = $request->estado;
+        $profissional->estado = $request->estado;
     }
 
 
 
     if (isset($request->cidade)) {
-        $cliente->cidade = $request->cidade;
+        $profissional->cidade = $request->cidade;
     }
 
 
     if (isset($request->complemento)) {
-        $cliente->complemento = $request->complemento;
+        $profissional->complemento = $request->complemento;
     }
 
 
     if (isset($request->bairro)) {
-        $cliente->bairro = $request->bairro;
+        $profissional->bairro = $request->bairro;
     }
 
     if (isset($request->rua)) {
-        $cliente->rua = $request->rua;
+        $profissional->rua = $request->rua;
     }
 
     if (isset($request->numero)) {
-        $cliente->numero = $request->numero;
+        $profissional->numero = $request->numero;
 
-     $cliente->update();
+        if(isset($profissional->salario)){
+             $profissional->salario=$request->$profissional;
+        }
+
+     $profissional->update();
 
      return response()->json([
          'status' => true,
@@ -248,18 +234,18 @@ class ClienteController extends Controller
 
  //FUNÇÃO DE EXCLUIR
 
- public function deletar($cliente)
+ public function deletar($profissional)
  {
-     $cliente = Cliente::find($cliente);
+    $profissional = Profissional::find($profissional);
 
-     if (!isset($cliente)) {
+     if (!isset($$profissional)) {
          return response()->json([
              'status' => false,
              'message' => "Usuário não encontrado"
          ]);
      }
 
-     $cliente->delete();
+     $profissional->delete();
 
      return response()->json(([
          'status' => true,
