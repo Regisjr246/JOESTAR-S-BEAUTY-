@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\ProfissionalController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,9 +54,6 @@ Route::delete('excluir/{id}', [ClienteController::class, 'deletar']);
 //CADASTRAR CLIENTE
 Route::post('cadastro', [ClienteController::class,  'castroCliente']);
 
-
-
-
 //BUSCAR POR CLIENTE
 Route::get('cliente/{nome}', [ClienteController::class, 'pesquisarPorCliente']);
 
@@ -77,3 +76,18 @@ Route::get('cep/{cep}', [ClienteController::class, 'pesquisarPorCep']);
 
 //ATUALIZAR FICHA DE CLIENTE
 Route::put('ataulizarCliente', [ClienteController::class,  'updateCliente']);
+
+
+
+
+
+
+//PROFISSIONAL:
+
+
+//CADASTROD DE PROFISSIONAL
+
+Route::post('cadastroProfissional',[ProfissionalController::class,'cadastroProfissional']);
+
+//Route::get('pesquisarPorProfissional/{nome}',[ControllersProfissionalcontroller::class,' cadastroProfissional']);
+

@@ -24,18 +24,15 @@ class ProfissionalFormRequestUpdate extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
-    } public function rules(): array
-    {
+     
+   
             return [
 
 
                     'nome' => 'required|max:120|min:5',
                     'celular' => 'required|max:11|min:10',
-                    'email' => 'required|unique:clientes,email|max:120',
-                    'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
+                    'email' => 'required|unique:profissionals,email|max:120',
+                    'cpf' => 'required|unique:profissionals,cpf|max:11|min:11',
                     'dataNascimento' => 'required|date',
                     'cidade' => 'required|max:120',
                     'estado' => 'required|max:2|min:2',
@@ -69,7 +66,7 @@ class ProfissionalFormRequestUpdate extends FormRequest
 
 
                     //NOME
-                    'nome.required.required' => 'O campo nome é obrigatorio',
+                    'nome.required' => 'O campo nome é obrigatorio',
                     'nome.max' => 'O campo nome deve conter  no maximo 120 caracteres',
                     'nome.min' => 'O campo nome deve conter no minimo 5 caracteres',
 

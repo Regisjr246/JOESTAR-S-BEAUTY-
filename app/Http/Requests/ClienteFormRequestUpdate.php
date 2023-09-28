@@ -39,7 +39,8 @@ class ClienteFormRequestUpdate extends FormRequest
                         'bairro' => 'required|max:100|',
                         'cep' => 'required|max:8|min:8',
                         'complemento' => 'required|max:150|',
-                        'password' => 'required|'
+                        'password' => 'required|',
+                        'salario'=>'required|decimal:2'
                 ];
         }
 
@@ -125,7 +126,13 @@ class ClienteFormRequestUpdate extends FormRequest
                         'complemento.max' => 'O campo complemento deve conter no maximo 150',
 
                         //SENHA       
-                        'password.required' => 'O campo senha é obrigatorio'
+                        'password.required' => 'O campo senha é obrigatorio',
+
+                        //SALARIO
+            'salario.required'=> 'O campo salário é obrigatorios',
+            'salario.decimal'=> 'O campo salário deve ser em decimal '
+
+                        
 
 
 

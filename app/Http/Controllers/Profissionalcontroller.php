@@ -3,25 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfissionalFormRequest;
-use App\Http\Requests\ClienteFormRequestUpdate;
-use App\Http\Requests\ServicoFormRequestUpdate;
-use App\Models\Cliente;
+use App\Http\Requests\ProfissionalFormRequestUpdate;
 use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ClienteController extends Controller
+class ProfissionalController extends Controller
 {
 
 
 
-    //CADASTRO DE CLIENTE
-
-
-    public function castroProfissional(  ProfissionalFormRequest $request)
+    //CADASTRO DE PROFISSIONAL
+    public function cadastroProfissional(ProfissionalFormRequest $request)
     {
-
-        $profissional = Cliente::create([
+       
+        $profissional = Profissional::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email' => $request->email,
@@ -35,12 +31,13 @@ class ClienteController extends Controller
             'bairro' => $request->bairro,
             'cep' => $request->cep,
             'complemento' => $request->complemento,
-            'password' => Hash::make( $request->password),
+            'password' => Hash::make($request->password),
             'salario'=>$request->salario
         ]);
+
         return response()->json([
             "success" => true,
-            "message" => "Cliente cadastrado com sucesso",
+            "message" => "Profissional cadastrado com sucesso",
             "data" => $profissional
         ], 200);
     }
@@ -49,7 +46,7 @@ class ClienteController extends Controller
 
     //PESQUISA POR NOME
 
-    public function pesquisarPorNome(Request $request)
+    public function pesquisarPorProfissional(Request $request)
     {
 
 
@@ -67,7 +64,7 @@ class ClienteController extends Controller
 
         return response()->json([
             'status' => false,
-            'data' => "Cliente não encontrado"
+            'data' => "Profissional não encontrado"
         ]);
     }
 
@@ -145,13 +142,13 @@ class ClienteController extends Controller
 
 
 
- public function updateCliente(ProfissionalFormRequesttUpdate $request)
+ public function updateProfissional(ProfissionalFormRequestUpdate $request)
  {
 
 
      $profissional= Profissional::find($request->id);
 
-     if (!isset($cliente)) {
+     if (!isset($Profissional)) {
          return response()->json([
              'status' => false,
              'message' => 'Serviço não encontrado'
