@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\ProfissionalController;
@@ -91,3 +92,9 @@ Route::post('cadastroProfissional',[ProfissionalController::class,'cadastroProfi
 
 //Route::get('pesquisarPorProfissional/{nome}',[ControllersProfissionalcontroller::class,' cadastroProfissional']);
 
+
+
+
+//CADASTROD DE PROFISSIONAL
+
+Route::post('cadastroAgenda',[AgendaController::class,'cadastroClienteAgenda']);
