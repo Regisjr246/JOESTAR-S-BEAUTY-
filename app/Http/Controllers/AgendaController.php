@@ -14,7 +14,6 @@ class AgendaController extends Controller
 
     public function cadastroClienteAgenda(AgendaFormRequest $request)
     {
-
         $cliente = Agenda::create([
             'cliente' => $request->cliente,
             ' profissional' => $request->profissional,
