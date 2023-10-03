@@ -14,18 +14,18 @@ class AgendaController extends Controller
 
     public function cadastroClienteAgenda(AgendaFormRequest $request)
     {
-        $cliente = Agenda::create([
-            'cliente' => $request->cliente,
-            ' profissional' => $request->profissional,
-            'data' => $request->data,
-            'hora' => $request->hora,
-            'servico' => $request->servico,
-            'formaDePagamento' => $request->formaDePagamento
+        $agendas = Agenda::create([
+            'cliente_id' => $request->cliente_id,
+            'profissional_id' => $request->profissional_id,
+            'valor'=>$request->valor,
+            'data_hora' => $request->data_hora,
+            'servico_id' => $request->servico_id,
+            'tipo_pagamento' => $request->tipo_pagamento
         ]);
         return response()->json([
             "success" => true,
             "message" => "Agendamento cadastrado com sucesso",
-            "data" => $cliente
+            "data" => $agendas
         ], 200);
     }
 
@@ -37,12 +37,12 @@ class AgendaController extends Controller
     {
 
 
-        $cliente = Agenda::where('servico', 'like', '%' . $request->servico . '%')->get();
+        $agendas = Agenda::where('servico', 'like', '%' . $request->servico . '%')->get();
 
-        if (count($cliente) > 0) {
+        if (count($agendas) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $cliente
+                'data' => $agendas
             ]);
         }
 
@@ -56,13 +56,13 @@ class AgendaController extends Controller
 
     //EDITANDO O AGENDAMENTO
 
-    public function updateProfissional(AgendaFormRequestUpdate $request)
+    public function updateAgendamento(AgendaFormRequest $request)
     {
 
 
-        $cliente = Agenda::find($request->id);
+        $agendas = Agenda::find($request->id);
 
-        if (!isset($cliente)) {
+        if (!isset($agendas)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Serviço não encontrado'
@@ -70,37 +70,37 @@ class AgendaController extends Controller
         }
 
 
-        if (isset($request->cliente)) {
-            $cliente->cliente = $request->cliente;
+        if (isset($request->agenda)) {
+            $agendas->cliente_id = $request->cliente_id;
         }
 
-        if (isset($request->profissional)) {
-            $cliente->profissional = $request->profissional;
-        }
-
-
-
-        if (isset($request->data)) {
-            $cliente->data = $request->data;
+        if (isset($request->profissional_id)) {
+            $agendas->profissional_id = $request->profissional_id;
         }
 
 
 
-        if (isset($request->hora)) {
-            $cliente->hora = $request->hora;
+        if (isset($request->data_hora)) {
+            $agendas->data_hora = $request->data_hora;
         }
 
 
-        if (isset($request->servico)) {
-            $cliente->servico = $request->servico;
+
+        if (isset($request->valor)) {
+            $agendas->valor = $request->valor;
         }
 
 
-        if (isset($request->formaDePagamento)) {
-            $cliente->formaDePagamento = $request->formaDePagamento;
+        if (isset($request->servico_id)) {
+            $agendas->servico_id = $request->servico_id;
         }
 
-        $cliente->update();
+
+        if (isset($request->tipo_pagamento)) {
+            $agendas->tipo_pagamento = $request->tipo_pagamento;
+        }
+
+        $agendas->update();
 
         return response()->json([
             'status' => true,
@@ -110,81 +110,27 @@ class AgendaController extends Controller
 
 
 
-    //DELETANDO AGENDAMENTO forma 1
+    //DELETANDO AGENDAMENTO 
 
-    public function excluir($cliente)
-    {
-        $profissional = Agenda::find($cliente);
-
-        if (!isset($cliente)) {
+    public function excluir($id){
+        $agendas= Agenda::find($id);
+        if (!isset($agendas)) {
             return response()->json([
                 'status' => false,
                 'message' => "Agendamento não encontrado"
             ]);
         }
 
-        $profissional->delete();
+        $agendas->delete();
 
         return response()->json(([
             'status' => true,
-            'message' =>  "Serviço excluido com sucesso"
+            'message' =>  "Agendamento excluido com sucesso"
         ]));
     }
 
 
 
 
-    //DELETANDO AGENDAMENTO FORMA 2
 
-    public function excluir2($request, $cliente)
-    {
-        $profissional = Agenda::find($cliente);
-
-        if (!isset($cliente)) {
-            return response()->json([
-                'status' => false,
-                'message' => "Agendamento não encontrado"
-            ]);
-        }
-
-        if (isset($request->cliente)) {
-            $cliente->cliente = $request->cliente;
-        }
-
-        if (isset($request->profissional)) {
-            $cliente->profissional = $request->profissional;
-        }
-
-
-
-        if (isset($request->data)) {
-            $cliente->data = $request->data;
-        }
-
-
-
-        if (isset($request->hora)) {
-            $cliente->hora = $request->hora;
-        }
-
-
-        if (isset($request->servico)) {
-            $cliente->servico = $request->servico;
-        }
-
-
-        if (isset($request->formaDePagamento)) {
-            $cliente->formaDePagamento = $request->formaDePagamento;
-
-
-
-
-            $profissional->delete();
-
-            return response()->json(([
-                'status' => true,
-                'message' =>  "Agendamento excluido com sucesso"
-            ]));
-        }
-    }
 }

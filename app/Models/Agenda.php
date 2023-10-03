@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Agenda extends Model
 {
     protected $fillable =[
-        'cliente',
-        ' profissional',
-         'data',
-          'hora',
-           'servico', 
-           'formaDePagamento'
+        'cliente_id',
+        'profissional_id',
+         'data_hora',
+           'servico_id', 
+           'tipo_pagamento',
+           'valor'
   
     ];
 }

@@ -95,6 +95,10 @@ Route::post('cadastroProfissional',[ProfissionalController::class,'cadastroProfi
 
 
 
-//CADASTROD DE PROFISSIONAL
+//CADASTROD DE agendamento
 
 Route::post('cadastroAgenda',[AgendaController::class,'cadastroClienteAgenda']);
+
+Route::put('atualizarA/{id}', [AgendaController::class,  'updateAgendamento']);
+
+Route::delete('deleteAgendamento/{id}', [AgendaController::class, 'excluir']);

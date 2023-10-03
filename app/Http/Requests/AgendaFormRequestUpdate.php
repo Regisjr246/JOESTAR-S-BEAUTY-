@@ -19,17 +19,17 @@ class AgendaFormRequestUpdate extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'cliente'=>'required|max:80|min:2',
-            'profissional'=>'required|max:80|min:2',
-             'data'=>'required|max:80|min:2',
-              'hora'=>'required|max:80|min:2',
-               'servico'=>'required|max:80|min:2', 
-               'formaDePagamento'=>'required|max:80|min:2'
+            'cliente_id'=>'required',
+            'profissional_id'=>'required',
+             'data_hora'=>'required|date',
+              'valor'=>'required|decimal:2',
+               'servico_id'=>'required|min:2', 
+               'tipo_pagamento'=>'required|min:3|max:20'
         ];
 
     }
@@ -47,28 +47,20 @@ class AgendaFormRequestUpdate extends FormRequest
         public function messages()
         {
             return [   
-                'cliente.required'=>'Esse campo é obrigatorio',
-                ' profissional.required'=>'Esse campo é obrigatorio',
-                 'data.required'=>'Esse campo é obrigatorio',
-                  'hora.required'=>'Esse campo é obrigatorio',
-                   'servico.required'=>'Esse campo é obrigatorio', 
-                   'formaDePagamento.required'=>'Esse campo é obrigatorio',
+                'cliente_id.required'=>'Esse campo é obrigatorio',
+                ' profissional_id.required'=>'Esse campo é obrigatorio',
+                 'data_hora.required'=>'Esse campo é obrigatorio',
+                   'servico_id.required'=>'Esse campo é obrigatorio', 
+                   'tipo_pagamento.required'=>'Esse campo é obrigatorio',
 
 
-                   'cliente.max'=>'Esse campo é obrigatorio',
-                   ' profissional.max'=>'Esse campo é obrigatorio',
-                    'data.maxd'=>'Esse campo é obrigatorio',
-                     'hora.max'=>'Esse campo é obrigatorio',
-                      'servico.max'=>'Esse campo é obrigatorio', 
-                      'formaDePagamento.max'=>'Esse campo é obrigatorio',
-
-
-                      'cliente.min'=>'Esse campo é obrigatorio',
-                      ' profissional.min'=>'Esse campo é obrigatorio',
-                       'data.min'=>'Esse campo é obrigatorio',
-                        'hora.min'=>'Esse campo é obrigatorio',
-                         'servico.min'=>'Esse campo é obrigatorio', 
-                         'formaDePagamento.min'=>'Esse campo é obrigatorio'
+                
+                      'cliente_id.min'=>'Esse campo é obrigatorio',
+                      ' profissional_id..min'=>'Esse campo é obrigatorio',
+                       'data_id.min'=>'Esse campo é obrigatorio',
+                        'hora_id.min'=>'Esse campo é obrigatorio',
+                         'servico_id.min'=>'Esse campo é obrigatorio', 
+                         'tipo_pagamento.min'=>'Esse campo é obrigatorio'
 
 
 
