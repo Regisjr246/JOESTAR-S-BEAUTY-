@@ -23,6 +23,11 @@ class AgendaController extends Controller
             'servico' => $request->servico,
             'formaDePagamento' => $request->formaDePagamento
         ]);
+        return response()->json([
+            "success" => true,
+            "message" => "Agendamento cadastrado com sucesso",
+            "data" => $cliente
+        ], 200);
     }
 
 
