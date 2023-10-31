@@ -46,7 +46,7 @@ class ProfissionalController extends Controller
 
     //PESQUISA POR NOME
 
-    public function pesquisarPorProfissional(Request $request)
+    public function pesquisarPorProfissionalNome(Request $request)
     {
 
 
@@ -250,7 +250,27 @@ class ProfissionalController extends Controller
      ]));
  }
 
+ 
+ public function visualizarProfissional()
+ {
+     $profissional = Profissional::all();
+
+     if (!isset($profissional)) {
+
+         return response()->json([
+             'status' => false,
+             'message' => 'não há registros registrados'
+         ]);
+     }
+     return response()->json([
+         'status' => true,
+         'data' => $profissional
+     ]);
+ }
 
 
 
 }
+
+
+

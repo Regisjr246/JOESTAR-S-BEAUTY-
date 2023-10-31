@@ -17,7 +17,7 @@ class ClienteController extends Controller
     //CADASTRO DE CLIENTE
 
 
-    public function castroCliente(ClienteFormRequest $request)
+    public function cadastroCliente(ClienteFormRequest $request)
     {
 
         $cliente = Cliente::create([
@@ -265,6 +265,31 @@ class ClienteController extends Controller
          'status' => true,
          'message' =>  "Serviço excluido com sucesso"
      ]));
+ }
+
+
+
+
+
+
+
+
+ 
+ public function visualizarCadastroCliente()
+ {
+     $cliente = Cliente::all();
+
+     if (!isset($cliente)) {
+
+         return response()->json([
+             'status' => false,
+             'message' => 'não há registros registrados'
+         ]);
+     }
+     return response()->json([
+         'status' => true,
+         'data' => $cliente
+     ]);
  }
 
 

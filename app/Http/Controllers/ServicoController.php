@@ -175,4 +175,28 @@ class ServicoController extends Controller
             'message' =>  "Serviço excluido com sucesso"
         ]));
     }
+
+
+
+
+    public function visualizarServico()
+    {
+        $servico =  Servico::all();
+   
+        if (!isset($servico)) {
+   
+            return response()->json([
+                'status' => false,
+                'message' => 'não há registros registrados'
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $servico
+        ]);
+    }
+
+
+
 }
+
