@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 Route::post('cadastrarServico', [ServicoController::class,  'servico']);
 Route::post('buscarNome', [ServicoController::class, 'PesquisarPorNome']);
-Route::get('pesquisar/{descricao}', [ServicoController::class, 'pesquisarPorDescricao']);
+Route::post('pesquisar', [ServicoController::class, 'pesquisarPorDescricao']);
 Route::put('update', [ServicoController::class,  'update']);
 Route::get('visualizarServico', [ServicoController::class, 'visualizarServico']);
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ Route::post('CPF', [ClienteController::class, 'pesquisarPorCpf']);
 Route::post('telefone', [ClienteController::class, 'PesquisarPorCelular']);
 Route::post('email', [ClienteController::class, 'PesquisarPorEmail']);
 Route::post('cep', [ClienteController::class, 'pesquisarPorCep']);
-Route::put('ataulizarCliente', [ClienteController::class,  'updateCliente']);
+//Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
 Route::get('visualizarCadastroCliente', [ClienteController::class, 'visualizarCadastroCliente']);
 
 //PROFISSIONAL:
@@ -48,12 +48,14 @@ Route::get('visualizarCadastroCliente', [ClienteController::class, 'visualizarCa
 
 
 Route::post('cadastroProfissional', [ProfissionalController::class, 'cadastroProfissional']);
-
-
-
 Route::post('pesquisarPorProfissional', [ProfissionalController::class, 'pesquisarPorProfissionalNome']);
-
 Route::get('vizualizarProfi', [ProfissionalController::class, 'visualizarProfissional']);
+Route::post('pesquisarPorCpf', [ProfissionalController::class, 'pesquisarPorCpf']);
+Route::post('PesquisarPorCelular', [ProfissionalController::class, 'PesquisarPorCelular']);
+Route::post('PesquisarPorEmail', [ProfissionalController::class, 'PesquisarPorEmail']);
+Route::put('updateProfissional/{id}', [ProfissionalController::class,  'updateProfissional']);
+Route::delete('deletarProficional/{id}', [ProfissionalController::class, 'deletarProficional']);
+
 
 //CADASTROD DE agendamento
 

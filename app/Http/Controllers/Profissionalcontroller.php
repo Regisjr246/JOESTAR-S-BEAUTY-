@@ -148,7 +148,7 @@ class ProfissionalController extends Controller
 
      $profissional= Profissional::find($request->id);
 
-     if (!isset($Profissional)) {
+     if (!isset($id)) {
          return response()->json([
              'status' => false,
              'message' => 'Serviço não encontrado'
@@ -231,11 +231,11 @@ class ProfissionalController extends Controller
 
  //FUNÇÃO DE EXCLUIR
 
- public function deletar($profissional)
+ public function deletarProficional($id)
  {
-    $profissional = Profissional::find($profissional);
+    $profissional = Profissional::find($id);
 
-     if (!isset($$profissional)) {
+     if (!isset($id)) {
          return response()->json([
              'status' => false,
              'message' => "Usuário não encontrado"
