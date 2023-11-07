@@ -167,84 +167,71 @@ class ClienteController extends Controller
  {
 
 
-     $cliente= Cliente::find($request->id);
+    $cliente = Cliente::find($request->id);
 
-     if (!isset($cliente)) {
-         return response()->json([
-             'status' => false,
-             'message' => 'Serviço não encontrado'
-         ]);
-     }
-
-
-     if (isset($request->nome)) {
-         $cliente->nome = $request->nome;
-     }
-
-     if (isset($request->email)) {
-         $cliente->email = $request->email;
-     }
-
-     if (isset($request->cpf)) {
-         $cliente->cpf = $request->cpf;
-     }
-
-     if (isset($request->senha)) {
-         $cliente->senha = $request->senha;
-     }
-
-     if (isset($request->dataNascimento)) {
-        $cliente->sdataNascimento = $request->sdataNascimento;
+    if (!isset($cliente)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'cliente não encontrado'
+        ]);
     }
 
-    if (isset($request->cep)) {
-        $cliente->cep = $request->cep;
-    }
 
+    if (isset($request->nome)) {
+        $cliente->nome = $request->nome;
+    }
 
     if (isset($request->celular)) {
         $cliente->celular = $request->celular;
     }
 
-    if (isset($request->numero)) {
-        $cliente->numero = $request->numero;
-    }
-    if (isset($request->estado)) {
-        $cliente->estado = $request->estado;
+    if (isset($request->email)) {
+        $cliente->email = $request->email;
     }
 
+    if (isset($request->cpf)) {
+        $cliente->cpf = $request->cpf;
+    }
+
+    if (isset($request->dataNascimento)) {
+        $cliente->dataNascimento = $request->dataNascimento;
+    }
 
 
     if (isset($request->cidade)) {
         $cliente->cidade = $request->cidade;
     }
 
+    if (isset($request->estado)) {
+        $cliente->estado = $request->estado;
+    }
 
+    if (isset($request->pais)) {
+        $cliente->pais = $request->pais;
+    }
+    if (isset($request->numero)) {
+        $cliente->numero = $request->numero;
+    }
+    if (isset($request->rua)) {
+        $cliente->rua = $request->rua;
+    }
+    if (isset($request->bairro)) {
+        $cliente->bairro = $request->bairro;
+    }
+    if (isset($request->cep)) {
+        $cliente->cep = $request->cep;
+    }
     if (isset($request->complemento)) {
         $cliente->complemento = $request->complemento;
     }
 
+    $cliente->update();
 
-    if (isset($request->bairro)) {
-        $cliente->bairro = $request->bairro;
-    }
-
-    if (isset($request->rua)) {
-        $cliente->rua = $request->rua;
-    }
-
-    if (isset($request->numero)) {
-        $cliente->numero = $request->numero;
-
-     $cliente->update();
-
-     return response()->json([
-         'status' => true,
-         'message' => 'Serviço ataulizado'
-     ]);
- }
+    return response()->json([
+        'status' => true,
+        'message' => 'cliente ataulizado'
+    ]);
 }
-
 
  //FUNÇÃO DE EXCLUIR
 
@@ -292,7 +279,38 @@ class ClienteController extends Controller
      ]);
  }
 
+ 
 
 
+
+
+
+
+
+
+
+
+
+ 
+
+
+ public function pesquisarPorIdCleinte($id)
+ {
+    $cliente = Cliente::find($id);
+
+
+     if ($cliente == null) {
+         return response()->json([
+             'status' => false,
+             'message' => "Usuário não encontrado"
+         ]);
+     }
+
+     return response()->json([
+
+         'status' => true,
+         'data' => $cliente
+     ]);
+ }
 
 }

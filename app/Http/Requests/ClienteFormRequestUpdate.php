@@ -24,23 +24,20 @@ class ClienteFormRequestUpdate extends FormRequest
         public function rules(): array
         {
                 return [
-
-
                         'nome' => 'required|max:120|min:5',
-                        'celular' => 'required|max:11|min:10',
-                        'email' => 'required|unique:clientes,email|max:120',
-                        'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
+                        'celular' => 'required|max:11|min:10|unique:clientes,celular,'.$this->id,
+                        'email' => 'required|max:120|unique:clientes,email,'.$this->id,
+                        'cpf' => 'required|max:11|min:11|unique:clientes,cpf,'.$this->id,
                         'dataNascimento' => 'required|date',
                         'cidade' => 'required|max:120',
                         'estado' => 'required|max:2|min:2',
                         'pais' => 'required|max:80|min:5',
                         'rua' => 'required|max:120|min:5',
                         'numero' => 'required|max:10',
-                        'bairro' => 'required|max:100|',
+                        'bairro' => 'required|max:100',
                         'cep' => 'required|max:8|min:8',
-                        'complemento' => 'required|max:150|',
-                        'password' => 'required|',
-                        'salario'=>'required|decimal:2'
+                        'complemento' => 'required|max:150',
+
                 ];
         }
 
@@ -128,10 +125,7 @@ class ClienteFormRequestUpdate extends FormRequest
                         //SENHA       
                         'password.required' => 'O campo senha é obrigatorio',
 
-                        //SALARIO
-            'salario.required'=> 'O campo salário é obrigatorios',
-            'salario.decimal'=> 'O campo salário deve ser em decimal '
-
+                     
                         
 
 

@@ -144,17 +144,14 @@ class ProfissionalController extends Controller
 
  public function updateProfissional(ProfissionalFormRequestUpdate $request)
  {
+     $profissional = Profissional::find($request->id);
 
-
-     $profissional= Profissional::find($request->id);
-
-     if (!isset($id)) {
+     if (!isset($profissional)) {
          return response()->json([
              'status' => false,
              'message' => 'Serviço não encontrado'
          ]);
      }
-
 
      if (isset($request->nome)) {
         $profissional->nome = $request->nome;
@@ -173,7 +170,7 @@ class ProfissionalController extends Controller
      }
 
      if (isset($request->dataNascimento)) {
-        $profissional->sdataNascimento = $request->sdataNascimento;
+        $profissional->dataNascimento = $request->dataNascimento;
     }
 
     if (isset($request->cep)) {
@@ -214,9 +211,9 @@ class ProfissionalController extends Controller
 
     if (isset($request->numero)) {
         $profissional->numero = $request->numero;
-
-        if(isset($profissional->salario)){
-             $profissional->salario=$request->$profissional;
+    }
+        if(isset($request->salario)){
+             $profissional->salario = $request->salario;
         }
 
      $profissional->update();
@@ -225,7 +222,7 @@ class ProfissionalController extends Controller
          'status' => true,
          'message' => 'Serviço ataulizado'
      ]);
- }
+ 
 }
 
 

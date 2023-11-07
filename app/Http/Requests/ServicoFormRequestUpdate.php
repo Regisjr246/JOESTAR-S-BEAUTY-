@@ -24,7 +24,7 @@ class ServicoFormRequestUpdate extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'=>'max:80|min:5|unique:servicos,nome,'. $this->id,
+            'nome'=>'max:80|min:5|unique:servicos,nome,',
             'preco'=>'decimal:2',
             'duracao'=>'numeric',  
             'descricao'=>'max:200|min:10',

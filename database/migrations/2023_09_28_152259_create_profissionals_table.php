@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('profissionals', function (Blueprint $table) {
             $table->id();
             $table->string('nome',120)->nullable(false);
-            $table->string('celular',11)->nullable(false);
-            $table->string('email',120)->nullable(false);
-            $table->string('cpf',11)->nullable(false);
+            $table->string('celular',11)->nullable(false)->unique();;
+            $table->string('email',120)->nullable(false)->unique();;
+            $table->string('cpf',11)->nullable(false)->unique();;
             $table->date('dataNascimento')->nullable(false);
             $table->string('cidade',120)->nullable(false);
             $table->string('estado',2)->nullable(false);

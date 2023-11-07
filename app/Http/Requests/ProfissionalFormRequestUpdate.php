@@ -27,12 +27,12 @@ class ProfissionalFormRequestUpdate extends FormRequest
      
    
             return [
-
+                
 
                     'nome' => 'required|max:120|min:5',
-                    'celular' => 'required|max:11|min:10',
-                    'email' => 'required|unique:profissionals,email|max:120',
-                    'cpf' => 'required|unique:profissionals,cpf|max:11|min:11',
+                    'celular' => 'required|max:11|min:10|unique:profissionals,celular,'.$this->id,
+                    'email' => 'required|max:120|unique:profissionals,email,'.$this->id,
+                    'cpf' => 'required|max:11|min:11|unique:profissionals,cpf,'.$this->id,
                     'dataNascimento' => 'required|date',
                     'cidade' => 'required|max:120',
                     'estado' => 'required|max:2|min:2',
@@ -42,8 +42,8 @@ class ProfissionalFormRequestUpdate extends FormRequest
                     'bairro' => 'required|max:100|',
                     'cep' => 'required|max:8|min:8',
                     'complemento' => 'required|max:150|',
-                    'password' => 'required|',
-                    'salario'=>'required|decimal'
+                  
+                    'salario'=>'required|decimal:2'
             ];
     }
 
@@ -128,9 +128,7 @@ class ProfissionalFormRequestUpdate extends FormRequest
                     'complemento.required' => 'O campo complemento é obrigatorio',
                     'complemento.max' => 'O campo complemento deve conter no maximo 150',
 
-                    //SENHA       
-                    'password.required' => 'O campo senha é obrigatorio',
-
+                    
                     //SALARIO
                     'salario.required'=> 'O campo salário é obrigatorios'
 

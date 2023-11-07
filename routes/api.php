@@ -26,7 +26,7 @@ Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 Route::post('cadastrarServico', [ServicoController::class,  'servico']);
 Route::post('buscarNome', [ServicoController::class, 'PesquisarPorNome']);
 Route::post('pesquisar', [ServicoController::class, 'pesquisarPorDescricao']);
-Route::put('update', [ServicoController::class,  'update']);
+Route::put('updateServico', [ServicoController::class,  'update']);
 Route::get('visualizarServico', [ServicoController::class, 'visualizarServico']);
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,8 +40,9 @@ Route::post('CPF', [ClienteController::class, 'pesquisarPorCpf']);
 Route::post('telefone', [ClienteController::class, 'PesquisarPorCelular']);
 Route::post('email', [ClienteController::class, 'PesquisarPorEmail']);
 Route::post('cep', [ClienteController::class, 'pesquisarPorCep']);
-//Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
+Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
 Route::get('visualizarCadastroCliente', [ClienteController::class, 'visualizarCadastroCliente']);
+Route::get('pesquisarPorIdCleinte/{id}', [ClienteController::class, 'pesquisarPorIdCleinte']);
 
 //PROFISSIONAL:
 
@@ -53,7 +54,7 @@ Route::get('vizualizarProfi', [ProfissionalController::class, 'visualizarProfiss
 Route::post('pesquisarPorCpf', [ProfissionalController::class, 'pesquisarPorCpf']);
 Route::post('PesquisarPorCelular', [ProfissionalController::class, 'PesquisarPorCelular']);
 Route::post('PesquisarPorEmail', [ProfissionalController::class, 'PesquisarPorEmail']);
-Route::put('updateProfissional/{id}', [ProfissionalController::class,  'updateProfissional']);
+Route::put('updateProfissional', [ProfissionalController::class,  'updateProfissional']);
 Route::delete('deletarProficional/{id}', [ProfissionalController::class, 'deletarProficional']);
 
 
