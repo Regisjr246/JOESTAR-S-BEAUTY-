@@ -56,6 +56,7 @@ Route::post('PesquisarPorCelular', [ProfissionalController::class, 'PesquisarPor
 Route::post('PesquisarPorEmail', [ProfissionalController::class, 'PesquisarPorEmail']);
 Route::put('updateProfissional', [ProfissionalController::class,  'updateProfissional']);
 Route::delete('deletarProficional/{id}', [ProfissionalController::class, 'deletarProficional']);
+Route::get('pesquisarPorIdProficional/{id}', [ProfissionalController::class, 'pesquisarPorIdProficional']);
 
 
 //CADASTROD DE agendamento
