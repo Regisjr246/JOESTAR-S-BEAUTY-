@@ -28,6 +28,7 @@ Route::post('buscarNome', [ServicoController::class, 'PesquisarPorNome']);
 Route::post('pesquisar', [ServicoController::class, 'pesquisarPorDescricao']);
 Route::put('updateServico', [ServicoController::class,  'update']);
 Route::get('visualizarServico', [ServicoController::class, 'visualizarServico']);
+Route::get('pesquisarPorIdServico/{id}', [ServicoController::class, 'pesquisarPorIdServico']);
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //CADASTRO DE CLIENTES:

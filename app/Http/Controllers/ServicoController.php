@@ -198,5 +198,42 @@ class ServicoController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function pesquisarPorIdServico($id)
+    {
+        $servico =  Servico::find($id);
+   
+   
+        if ($servico == null) {
+            return response()->json([
+                'status' => false,
+                'message' => "Usuário não encontrado"
+            ]);
+        }
+   
+        return response()->json([
+   
+            'status' => true,
+            'data' => $servico
+        ]);
+    }
+   
+
+
+
+
 }
 
