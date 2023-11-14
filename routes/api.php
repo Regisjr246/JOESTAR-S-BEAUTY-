@@ -36,7 +36,7 @@ Route::get('pesquisarPorIdServico/{id}', [ServicoController::class, 'pesquisarPo
 
 Route::delete('excluir/{id}', [ClienteController::class, 'deletar']);
 Route::post('cadastroCliente', [ClienteController::class,  'cadastroCliente']);
-Route::post('cliente', [ClienteController::class, 'pesquisarPorCliente']);
+Route::post('buscarNomecliente', [ClienteController::class, 'pesquisarPorCliente']);
 Route::post('CPF', [ClienteController::class, 'pesquisarPorCpf']);
 Route::post('telefone', [ClienteController::class, 'PesquisarPorCelular']);
 Route::post('email', [ClienteController::class, 'PesquisarPorEmail']);
