@@ -45,11 +45,11 @@ Route::post('cep', [ClienteController::class, 'pesquisarPorCep']);
 Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
 Route::get('visualizarCadastroCliente', [ClienteController::class, 'visualizarCadastroCliente']);
 Route::get('pesquisarPorIdCleinte/{id}', [ClienteController::class, 'pesquisarPorIdCleinte']);
-
+Route::post('senha/clientes',[clientecontroller::class, 'redefinirSenha']);
 //PROFISSIONAL:
 
 
-
+Route::post('senha/profissional',[Profissionalcontroller::class, 'redefinirSenha']);
 Route::post('cadastroProfissional', [ProfissionalController::class, 'cadastroProfissional']);
 Route::post('pesquisarPorProfissional', [ProfissionalController::class, 'pesquisarPorProfissionalNome']);
 Route::get('vizualizarProfi', [ProfissionalController::class, 'visualizarProfissional']);
