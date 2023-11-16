@@ -24,12 +24,10 @@ class AgendaFormRequestUpdate extends FormRequest
     public function rules(): array
     {
         return [
-            'cliente_id'=>'required',
+            
             'profissional_id'=>'required',
              'data_hora'=>'required|date',
-              'valor'=>'required|decimal:2',
-               'servico_id'=>'required|min:2', 
-               'tipo_pagamento'=>'required|min:3|max:20'
+              
         ];
 
     }
@@ -47,20 +45,12 @@ class AgendaFormRequestUpdate extends FormRequest
         public function messages()
         {
             return [   
-                'cliente_id.required'=>'Esse campo é obrigatorio',
+         
                 ' profissional_id.required'=>'Esse campo é obrigatorio',
                  'data_hora.required'=>'Esse campo é obrigatorio',
-                   'servico_id.required'=>'Esse campo é obrigatorio', 
-                   'tipo_pagamento.required'=>'Esse campo é obrigatorio',
-
-
-                
-                      'cliente_id.min'=>'Esse campo é obrigatorio',
+                  
                       ' profissional_id..min'=>'Esse campo é obrigatorio',
-                       'data_id.min'=>'Esse campo é obrigatorio',
-                        'hora_id.min'=>'Esse campo é obrigatorio',
-                         'servico_id.min'=>'Esse campo é obrigatorio', 
-                         'tipo_pagamento.min'=>'Esse campo é obrigatorio'
+                       
 
 
 

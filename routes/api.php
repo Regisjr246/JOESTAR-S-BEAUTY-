@@ -4,6 +4,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\ProfissionalController;
+use App\Http\Controllers\HorarioController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -66,4 +67,8 @@ Route::post('cadastroAgenda', [AgendaController::class, 'cadastroClienteAgenda']
 
 Route::put('atualizarA/{id}', [AgendaController::class,  'updateAgendamento']);
 
-Route::delete('deleteAgendamento/{id}', [AgendaController::class, 'excluir']);
+Route::delete('deleteAgenda/{id}', [AgendaController::class, 'excluir']);
+Route::get('visualizarAgenda', [AgendaController::class, 'visualizarAgenda']);
+
+
+Route::put('updateAgenda', [AgendaController::class,  'updateAgenda']);

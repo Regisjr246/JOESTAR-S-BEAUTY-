@@ -99,7 +99,7 @@ class ClienteFormRequest extends FormRequest
                         //PAÍS
                         'pais.required' => 'O campo país é obrigatorio',
                         'pais.required' => 'O campo país deve conter no minímo 80 caracteres',
-                        'pais.required' => 'O campo país deve conter no maximo 5 caracteres',
+                        'pais.max' => 'O campo país deve conter no maximo 5 caracteres',
 
                         //RUA        
                         'rua.required' => 'O campo rua é obrigatorio',

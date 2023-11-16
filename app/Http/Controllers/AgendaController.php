@@ -15,16 +15,15 @@ class AgendaController extends Controller
     public function cadastroClienteAgenda(AgendaFormRequest $request)
     {
         $agendas = Agenda::create([
-            'cliente_id' => $request->cliente_id,
+           
             'profissional_id' => $request->profissional_id,
-            'valor'=>$request->valor,
+            
             'data_hora' => $request->data_hora,
-            'servico_id' => $request->servico_id,
-            'tipo_pagamento' => $request->tipo_pagamento
+            
         ]);
         return response()->json([
             "success" => true,
-            "message" => "Agendamento cadastrado com sucesso",
+            "message" => "Agenda cadastrado com sucesso",
             "data" => $agendas
         ], 200);
     }
@@ -56,7 +55,7 @@ class AgendaController extends Controller
 
     //EDITANDO O AGENDAMENTO
 
-    public function updateAgendamento(AgendaFormRequest $request)
+    public function updateAgenda(AgendaFormRequestUpdate $request)
     {
 
 
@@ -65,14 +64,12 @@ class AgendaController extends Controller
         if (!isset($agendas)) {
             return response()->json([
                 'status' => false,
-                'message' => 'Serviço não encontrado'
+                'message' => 'Agenda não encontrado'
             ]);
         }
 
 
-        if (isset($request->agenda)) {
-            $agendas->cliente_id = $request->cliente_id;
-        }
+       
 
         if (isset($request->profissional_id)) {
             $agendas->profissional_id = $request->profissional_id;
@@ -86,25 +83,11 @@ class AgendaController extends Controller
 
 
 
-        if (isset($request->valor)) {
-            $agendas->valor = $request->valor;
-        }
-
-
-        if (isset($request->servico_id)) {
-            $agendas->servico_id = $request->servico_id;
-        }
-
-
-        if (isset($request->tipo_pagamento)) {
-            $agendas->tipo_pagamento = $request->tipo_pagamento;
-        }
-
         $agendas->update();
 
         return response()->json([
             'status' => true,
-            'message' => 'Serviço ataulizado'
+            'message' => 'Agenda ataulizado'
         ]);
     }
 
@@ -128,6 +111,32 @@ class AgendaController extends Controller
             'message' =>  "Agendamento excluido com sucesso"
         ]));
     }
+
+
+
+
+
+
+
+    public function visualizarAgenda()
+    {
+        $agendas= Agenda::all();
+   
+        if (!isset($agendas)) {
+   
+            return response()->json([
+                'status' => false,
+                'message' => 'não há registros registrados'
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $agendas
+        ]);
+    }
+
+
+
 
 
 
