@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('agendas', function (Blueprint $table) {
             $table->id();
         
-            $table->bigInteger('profissional_id',)->nullable(false)->unique();
-            $table->date('data_hora')->nullable(false);
+            $table->bigInteger('profissional_id',)->nullable(false);
+            $table->dateTime('dataHora')->nullable(false);
            
             $table->timestamps();
         });

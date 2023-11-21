@@ -10,7 +10,7 @@ class Agenda extends Model
     protected $fillable =[
     
         'profissional_id',
-         'data_hora',
+         'dataHora',
           
   
     ];

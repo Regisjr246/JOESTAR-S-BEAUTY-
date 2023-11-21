@@ -12,13 +12,13 @@ class AgendaController extends Controller
     // AGENDA, CADASTRO DE CLIENTE:
 
 
-    public function cadastroClienteAgenda(AgendaFormRequest $request)
+    public function cadastroAgenda(AgendaFormRequest $request)
     {
-        $agendas = Agenda::create([
+        $agendas =Agenda::create([
            
             'profissional_id' => $request->profissional_id,
             
-            'data_hora' => $request->data_hora,
+            'dataHora' => $request->dataHora
             
         ]);
         return response()->json([

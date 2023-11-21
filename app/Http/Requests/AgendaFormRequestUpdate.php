@@ -26,7 +26,7 @@ class AgendaFormRequestUpdate extends FormRequest
         return [
             
             'profissional_id'=>'required',
-             'data_hora'=>'required|date',
+             'dataHora'=>'required|date',
               
         ];
 
@@ -47,7 +47,7 @@ class AgendaFormRequestUpdate extends FormRequest
             return [   
          
                 ' profissional_id.required'=>'Esse campo é obrigatorio',
-                 'data_hora.required'=>'Esse campo é obrigatorio',
+                 'dataHora.required'=>'Esse campo é obrigatorio',
                   
                       ' profissional_id..min'=>'Esse campo é obrigatorio',
                        

@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfissionalController extends Controller
 {
-
-
-
     //CADASTRO DE PROFISSIONAL
     public function cadastroProfissional(ProfissionalFormRequest $request)
     {

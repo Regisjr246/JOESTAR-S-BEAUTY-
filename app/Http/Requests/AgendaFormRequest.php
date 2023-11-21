@@ -25,8 +25,8 @@ class AgendaFormRequest extends FormRequest
     {
         return [
           
-            'profissional_id'=>'required|unique:Agendas,profissional_id',
-             'data_hora'=>'required|date',
+            'profissional_id'=>'required',
+             'dataHora'=>'required|',
         ];
 
     }
@@ -43,7 +43,7 @@ class AgendaFormRequest extends FormRequest
         {
             return [   
                 'profissional_id.required'=>'Esse campo é obrigatorio',
-                 'data_hora.required'=>'Esse campo é obrigatorio',
+                 'dataHora.required'=>'Esse campo é obrigatorio',
                  'profissional_id.unique'=>'Esse id já foi cadastrado',
              ];
         }

@@ -63,7 +63,7 @@ Route::get('pesquisarPorIdProficional/{id}', [ProfissionalController::class, 'pe
 
 //CADASTROD DE agendamento
 
-Route::post('cadastroAgenda', [AgendaController::class, 'cadastroClienteAgenda']);
+Route::post('cadastroAgenda', [AgendaController::class, 'cadastroAgenda']);
 
 Route::put('atualizarA/{id}', [AgendaController::class,  'updateAgendamento']);
 
