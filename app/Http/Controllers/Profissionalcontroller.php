@@ -225,7 +225,7 @@ class ProfissionalController extends Controller
 
  //FUNÇÃO DE EXCLUIR
 
- public function deletarProficional($id)
+ public function deletarProfissional($id)
  {
     $profissional = Profissional::find($id);
 
@@ -272,7 +272,7 @@ class ProfissionalController extends Controller
 
 
 
- public function pesquisarPorIdProficional($id)
+ public function pesquisarPorIdProfissional($id)
  {
     $profissional = Profissional::find($id);
 
@@ -298,7 +298,7 @@ class ProfissionalController extends Controller
     if (!isset($profissional)){
         return response()->json([
             'status' => false,
-            'message' => "Cliente não encontrado"
+            'message' => "Profissional não encontrado"
         ]);
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AgendaController extends Controller
 {
-    // AGENDA, CADASTRO DE CLIENTE:
+    // AGENDA, :
 
 
     public function cadastroAgenda(AgendaFormRequest $request)
