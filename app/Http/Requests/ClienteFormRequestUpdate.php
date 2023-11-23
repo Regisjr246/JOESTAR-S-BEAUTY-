@@ -6,132 +6,86 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ClienteFormRequestUpdate extends FormRequest
+class clienteFormRequestUpdate extends FormRequest
 {
-        /**
-         * Determine if the user is authorized to make this request.
-         */
-        public function authorize(): bool
-        {
-                return true;
-        }
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
 
-        /**
-         * Get the validation rules that apply to the request.
-         *
-         * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-         */
-        public function rules(): array
-        {
-                return [
-                        'nome' => 'required|max:120|min:5',
-                        'celular' => 'required|max:11|min:10|unique:clientes,celular,'.$this->id,
-                        'email' => 'required|max:120|unique:clientes,email,'.$this->id,
-                        'cpf' => 'required|max:11|min:11|unique:clientes,cpf,'.$this->id,
-                        'dataNascimento' => 'required|date',
-                        'cidade' => 'required|max:120',
-                        'estado' => 'required|max:2|min:2',
-                        'pais' => 'required|max:80|min:5',
-                        'rua' => 'required|max:120|min:5',
-                        'numero' => 'required|max:10',
-                        'bairro' => 'required|max:100',
-                        'cep' => 'required|max:8|min:8',
-                        'complemento' => 'required|max:150',
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'nome' => 'required|max:120|min:5',
+            'celular' => 'required|max:11|min:10|unique:clientes,celular,'. $this->id,
+            'email' => 'required|email|unique:clientes,email,'. $this->id,
+            'cpf' => 'required|max:11|min:11|unique:clientes,cpf,' . $this->id,
+            'dataNascimento' => 'required|date', 
+            'cidade' => 'required|max:120',
+            'estado' => 'required|max:2|min:2',
+            'pais' => 'required|max:80',
+            'rua' => 'required|max:120',
+            'numero' => 'required|max:10',
+            'bairro' => 'required|max:100',
+            'cep' => 'required|max:8|min:8',
+            'complemento' => 'max:150',
+            'senha' => '',
+        ];
+    }
 
-                ];
-        }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'error' => $validator->errors()
+        ]));
+    }
+    public function messages(){
 
-
-
-        public function failedValidationtion(Validator $validator)
-        {
-
-
-                throw new HttpResponseException(response()->json([
-                                'success' => false,
-                                'error' => $validator->errors()
-                        ]));
-        }
-
-
-        public function messages()
-        {
-                return [
-
-
-                        //NOME
-                        'nome.required.required' => 'O campo nome é obrigatorio',
-                        'nome.max' => 'O campo nome deve conter  no maximo 120 caracteres',
-                        'nome.min' => 'O campo nome deve conter no minimo 5 caracteres',
-
-                        //CELULAR
-                        'celular.required' => 'O campo celular é obrigatorio',
-                        'celular.min' => 'O campo celular deve conter no minimo 11caracteres',
-                        'celular.max' => 'O campo celular deve conter no maximo 11 caracteres',
-                        'celular.unique' => 'Celular já cadastrado, informe outr ',
-
-                        //EMAIL
-                        'email.required' => 'O email celular é obrigatorio',
-                        'email.unique' => 'Email já cadastrado informe outro email',
-                        'email.max' => 'O email celular de conter 120 caracteres',
-
-                        //CPF
-                        'cpf.required' => 'O campo cpf é obrigatorio',
-                        'cpf.max' => 'O campo cpf deve ter no maximo 11 caracteres',
-                        'cpf.min' => 'O campo cpf deve ter no mainimo 11 caracteres',
-                        'cpf.unique' => 'Cpf já cadastrado, informe outro cpf',
-
-                        //DATA DE NASCIMENTO        
-                        'dataNascimento.required' => 'O campo data de nascimento é obrigatorio',
-                        'dataNascimento.required' => 'O campo data de nascimento só deve conter numeros',
-
-                        //CIDADE        
-                        'cidade.required' => 'O campo cidade é obrigatorio',
-                        'cidade.required' => 'O campo cidade deve conter no maximo 120 caracteres',
-
-
-                        //ESTADO
-                        'estado.required' => 'O campo estado é obrigatorio',
-                        'estado.min' => 'O campo estado deve coonter no minimo 2 caracteres',
-                        'estado.max' => 'O campo estado deve conter no maximo 2 caracteres',
-
-                        //PAÍS
-                        'pais.required' => 'O campo país é obrigatorio',
-                        'pais.required' => 'O campo país deve conter no minímo 80 caracteres',
-                        'pais.required' => 'O campo país deve conter no maximo 5 caracteres',
-
-                        //RUA        
-                        'rua.required' => 'O campo rua é obrigatorio',
-                        'rua.required' => 'O campo rua deve conter no minimo 5 caracteres',
-                        'rua.required' => 'O campo rua deve conter no maximo 120 caracteres',
-
-                        //NUMERO
-                        'numero.required' => 'O campo numero é obrigatorio',
-                        'numero.max' => 'O campo numero deve conter no maximo 10 carcteres',
-
-                        //BAIRRO
-                        'bairro.required' => 'O campo bairro é obrigatorio',
-                        'bairro.required' => 'O campo bairro deve conter no maximo 100 caracteres',
-
-                        //CEP
-                        'cep.required' => 'O CEP  é obrigatorio',
-                        'cep.max' => 'O CEP deve conter no maximo 8 caracteres',
-                        'cep.min' => 'O CEP deve conter no minimo 8 caracteres',
-
-                        //COMPLEMENTO
-                        'complemento.required' => 'O campo complemento é obrigatorio',
-                        'complemento.max' => 'O campo complemento deve conter no maximo 150',
-
-                        //SENHA       
-                        'password.required' => 'O campo senha é obrigatorio',
-
-                     
-                        
-
-
-
-
-
-                ];
-        }
+        return[
+            'nome.required' => 'o nome é obrigatorio',
+            'nome.max' => 'o campo nome deve contar no maximo 120 caracteres',
+            'nome.min' => 'o campo nome deve contar no minimo 5 caracteres',
+            'celular.required' => 'o telefone é obrigatorio',
+            'celular.max' => 'o campo celular deve contar no maximo 11 caracteres',
+            'celular.min' => 'o campo celular deve contar no minimo 10 caracteres',
+            'celular.unique' => 'celular já cadastrado no sistema',
+            'email.required' => 'o email é obrigatorio',
+            'email.email' => 'formato de email invalido',
+            'email.unique' => 'email ja cadastrado no sistema',
+            'cpf.required' => 'o cpf é obrigatorio',
+            'cpf.max' => 'o campo cpf deve contar no maximo 11 caracteres',
+            'cpf.min' => 'o campo cpf deve contar no minimo 11 caracteres',
+            'cpf.unique' => 'cpf ja cadastrado no sistema',
+            'dataNascimento.required' => 'O campo data de nascimento é obrigatorio',
+            'dataNascimento.date' => 'O campo data de nascimento deve ter apenas numeros',
+            'cidade.required' => 'o campo cidade é obrigatorio',
+            'cidade.max' => 'o campo cidade deve contar no maximo 120 caracteres',
+            'estado.required' => 'o campo estado é obrigatorio',
+            'estado.max' => 'o campo estado deve contar no maximo 2 caracteres',
+            'estado.min' => 'o campo cpf deve contar no minimo 2 caracteres',
+            'pais.required' => 'o campo pais é obrigatorio',
+            'pais.max' => 'o campo pais deve contar no maximo 80 caracteres',
+            'rua.required' => 'o campo rua é obrigatorio',
+            'rua.max' => 'o campo rua deve contar no maximo 120 caracteres',
+            'numero.required' => 'o campo numero é obrigatorio',
+            'numero.max' => 'o campo numero deve contar no maximo 10 caracteres',
+            'bairro.required' => 'o campo bairro é obrigatorio',
+            'bairro.max' => 'o campo bairro deve contar no maximo 100 caracteres',
+            'cep.required' => 'o campo cep é obrigatorio',
+            'cep.max' => 'o campo cep deve contar no maximo 8 caracteres',
+            'cep.min' => 'o campo cep deve contar no minimo 8 caracteres',
+            'complemento.required' => 'o campo complemento é obrigatorio',
+            'complemento.max' => 'o campo complemento deve contar no maximo 150 caracteres',
+            'senha.required' => 'a senha obrigatorio'
+        ];
+    }
 }

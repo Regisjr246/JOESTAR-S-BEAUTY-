@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//CADASTRO DE SERVIÇO:
+//CADASTRO DE SERVIÇO:OK
 
 Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 Route::post('cadastrarServico', [ServicoController::class,  'servico']);
@@ -32,9 +32,8 @@ Route::get('visualizarServico', [ServicoController::class, 'visualizarServico'])
 Route::get('pesquisarPorIdServico/{id}', [ServicoController::class, 'pesquisarPorIdServico']);
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//CADASTRO DE CLIENTES:
 
-
+//CADASTRO DE CLIENTES: OK
 Route::delete('excluir/{id}', [ClienteController::class, 'deletar']);
 Route::post('cadastroCliente', [ClienteController::class,  'cadastroCliente']);
 Route::post('buscarNomecliente', [ClienteController::class, 'pesquisarPorCliente']);
@@ -46,9 +45,10 @@ Route::put('updateCliente', [ClienteController::class,  'updateCliente']);
 Route::get('visualizarCadastroCliente', [ClienteController::class, 'visualizarCadastroCliente']);
 Route::get('pesquisarPorIdCleinte/{id}', [ClienteController::class, 'pesquisarPorIdCleinte']);
 Route::post('senha/clientes',[clientecontroller::class, 'redefinirSenha']);
-//PROFISSIONAL:
+//-------------------------------------------------------------------------------------------------------------
 
 
+//PROFISSIONAL:OK
 Route::post('senha/profissional',[Profissionalcontroller::class, 'redefinirSenha']);
 Route::post('cadastroProfissional', [ProfissionalController::class, 'cadastroProfissional']);
 Route::post('pesquisarPorProfissional', [ProfissionalController::class, 'pesquisarPorProfissionalNome']);
@@ -64,14 +64,9 @@ Route::get('pesquisarPorIdProficional/{id}', [ProfissionalController::class, 'pe
 //CADASTROD DE agendamento
 
 Route::post('cadastroAgenda', [AgendaController::class, 'cadastroAgenda']);
-
-
 Route::delete('deleteAgenda/{id}', [AgendaController::class, 'excluir']);
 Route::get('visualizarAgenda', [AgendaController::class, 'visualizarAgenda']);
-
 Route::post('buscarPorData/', [AgendaController::class, 'buscarPorData']);
-
 Route::post('buscarPorIdProfissional{profissional_id}', [AgendaController::class, 'buscarPorIdProfissional']);
-
 route::get('find/agendamento/{id}', [AgendaController::class, 'pesquisarPorId']);
 route::put('update/agendamento', [AgendaController::class, 'update']);
