@@ -52,12 +52,12 @@ Route::post('senha/clientes',[clientecontroller::class, 'redefinirSenha']);
 Route::post('senha/profissional',[Profissionalcontroller::class, 'redefinirSenha']);
 Route::post('cadastroProfissional', [ProfissionalController::class, 'cadastroProfissional']);
 Route::post('pesquisarPorProfissional', [ProfissionalController::class, 'pesquisarPorProfissionalNome']);
-Route::get('vizualizarProfi', [ProfissionalController::class, 'visualizarProfissional']);
+Route::get('visualizarProfissional', [ProfissionalController::class, 'visualizarProfissional']);
 Route::post('pesquisarPorCpf', [ProfissionalController::class, 'pesquisarPorCpf']);
 Route::post('PesquisarPorCelular', [ProfissionalController::class, 'PesquisarPorCelular']);
 Route::post('PesquisarPorEmail', [ProfissionalController::class, 'PesquisarPorEmail']);
 Route::put('updateProfissional', [ProfissionalController::class,  'updateProfissional']);
-Route::delete('deletarProficional/{id}', [ProfissionalController::class, 'deletarProficional']);
+Route::delete('deletarProficional/{id}', [ProfissionalController::class, 'deletarProfissional']);
 Route::get('pesquisarPorIdProficional/{id}', [ProfissionalController::class, 'pesquisarPorIdProficional']);
 
 
@@ -65,10 +65,13 @@ Route::get('pesquisarPorIdProficional/{id}', [ProfissionalController::class, 'pe
 
 Route::post('cadastroAgenda', [AgendaController::class, 'cadastroAgenda']);
 
-Route::put('atualizarA/{id}', [AgendaController::class,  'updateAgendamento']);
 
 Route::delete('deleteAgenda/{id}', [AgendaController::class, 'excluir']);
 Route::get('visualizarAgenda', [AgendaController::class, 'visualizarAgenda']);
 
+Route::post('buscarPorData/', [AgendaController::class, 'buscarPorData']);
 
-Route::put('updateAgenda', [AgendaController::class,  'updateAgenda']);
+Route::post('buscarPorIdProfissional{profissional_id}', [AgendaController::class, 'buscarPorIdProfissional']);
+
+route::get('find/agendamento/{id}', [AgendaController::class, 'pesquisarPorId']);
+route::put('update/agendamento', [AgendaController::class, 'update']);

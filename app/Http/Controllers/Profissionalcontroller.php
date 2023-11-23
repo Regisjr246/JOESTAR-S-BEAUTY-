@@ -272,7 +272,7 @@ class ProfissionalController extends Controller
 
 
 
- public function pesquisarPorIdProfissional($id)
+ public function pesquisarPorIdProficional($id)
  {
     $profissional = Profissional::find($id);
 

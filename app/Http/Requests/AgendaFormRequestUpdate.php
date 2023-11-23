@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class AgendaFormRequestUpdate extends FormRequest
 {
@@ -19,51 +19,28 @@ class AgendaFormRequestUpdate extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            
             'profissional_id'=>'required',
              'dataHora'=>'required|date',
-              
         ];
-
     }
-
-
-        public function failedValidation(Validator $validator)
+    public function failedValidation(Validator $validator)
         {
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'error' => $validator->errors()
             ]));
         }
-    
-    
         public function messages()
         {
             return [   
-         
-                ' profissional_id.required'=>'Esse campo é obrigatorio',
-                 'dataHora.required'=>'Esse campo é obrigatorio',
-                  
-                      ' profissional_id..min'=>'Esse campo é obrigatorio',
-                       
-
-
-
+                'profissional_id.required'=>'Esse campo é obrigatorio',
+                'dataHora.required'=>'Esse campo é obrigatorio',
+                'dataHora.date' => 'O campo data e hora deve ter apenas numeros',
              ];
         }
-
-
-
-
-
-
-
-
-
-    }
-
+}

@@ -29,14 +29,14 @@ class AgendaController extends Controller
     }
 
 
-    //VISUALIZAÇÃO DE SERVIÇO
+    //VISUALIZAÇÃO DE por data
 
 
-    public function VisualisarServico(Request $request)
+    public function buscarPorData(Request $request)
     {
 
 
-        $agendas = Agenda::where('servico', 'like', '%' . $request->servico . '%')->get();
+        $agendas = Agenda::where('datahORA', 'like', '%' . $request->dataHora . '%')->get();
 
         if (count($agendas) > 0) {
             return response()->json([
@@ -48,9 +48,57 @@ class AgendaController extends Controller
 
         return response()->json([
             'status' => false,
-            'data' => "Servico não encontrado"
+            'data' => "Data não encontrado"
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//EDITANDO O AGENDAMENTO
+public function update(AgendaFormRequestUpdate $request){
+    $agendamento = Agenda::find($request->id);
+
+    if(!isset($agendamento)){
+        return response()->json([
+            "status" => false,
+            "message" => "Agendamento não encontrado"
+        ]);
+    }
+
+    if(isset($request->profissional_id)){
+        $agendamento->profissional_id = $request->profissional_id;
+    }
+    if(isset($request->dataHora)){
+        $agendamento->dataHora = $request->dataHora;
+    }
+    $agendamento->update();
+
+    return response()->json([
+        "status" => false,
+        "message" => "agendamento atualizado"
+    ]);
+}
+
+
+
+
+
+
+
+
+
 
 
     //EDITANDO O AGENDAMENTO
@@ -78,7 +126,7 @@ class AgendaController extends Controller
 
 
         if (isset($request->data_hora)) {
-            $agendas->data_hora = $request->data_hora;
+            $agendas->dataHora = $request->data_hora;
         }
 
 
@@ -139,6 +187,27 @@ class AgendaController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+    public function pesquisarPorId($id){
+        $agendamento = Agenda::find($id);
+        if($agendamento == null){
+            return response()->json([
+                'status'=> false,
+                'message' => "agendamento não encontrado"
+            ]);     
+        }
+        return response()->json([
+            'status'=> true,
+            'data'=> $agendamento
+        ]);
+    }
 
 
 
