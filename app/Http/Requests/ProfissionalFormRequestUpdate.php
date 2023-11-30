@@ -89,11 +89,11 @@ class ProfissionalFormRequestUpdate extends FormRequest
 
                     //DATA DE NASCIMENTO        
                     'dataNascimento.required' => 'O campo data de nascimento é obrigatorio',
-                    'dataNascimento.required' => 'O campo data de nascimento só deve conter numeros',
+                    'dataNascimento.date' => 'O campo data de nascimento só deve conter numeros',
 
                     //CIDADE        
                     'cidade.required' => 'O campo cidade é obrigatorio',
-                    'cidade.required' => 'O campo cidade deve conter no maximo 120 caracteres',
+                    'cidade.max' => 'O campo cidade deve conter no maximo 120 caracteres',
 
 
                     //ESTADO
@@ -103,13 +103,13 @@ class ProfissionalFormRequestUpdate extends FormRequest
 
                     //PAÍS
                     'pais.required' => 'O campo país é obrigatorio',
-                    'pais.required' => 'O campo país deve conter no minímo 80 caracteres',
-                    'pais.required' => 'O campo país deve conter no maximo 5 caracteres',
+                    'pais.max' => 'O campo país deve conter no minímo 80 caracteres',
+                    'pais.min' => 'O campo país deve conter no maximo 5 caracteres',
 
                     //RUA        
                     'rua.required' => 'O campo rua é obrigatorio',
-                    'rua.required' => 'O campo rua deve conter no minimo 5 caracteres',
-                    'rua.required' => 'O campo rua deve conter no maximo 120 caracteres',
+                    'rua.min' => 'O campo rua deve conter no minimo 5 caracteres',
+                    'rua.max' => 'O campo rua deve conter no maximo 120 caracteres',
 
                     //NUMERO
                     'numero.required' => 'O campo numero é obrigatorio',
@@ -117,7 +117,7 @@ class ProfissionalFormRequestUpdate extends FormRequest
 
                     //BAIRRO
                     'bairro.required' => 'O campo bairro é obrigatorio',
-                    'bairro.required' => 'O campo bairro deve conter no maximo 100 caracteres',
+                    'bairro.max' => 'O campo bairro deve conter no maximo 100 caracteres',
 
                     //CEP
                     'cep.required' => 'O CEP  é obrigatorio',
@@ -130,7 +130,8 @@ class ProfissionalFormRequestUpdate extends FormRequest
 
                     
                     //SALARIO
-                    'salario.required'=> 'O campo salário é obrigatorios'
+                    'salario.required'=> 'O campo salário é obrigatorios',
+                    'salario.decimal'=> 'O campo salário deve ser em decimal ex:200.00'
 
 
 
