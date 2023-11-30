@@ -26,8 +26,8 @@ class ServicoFormRequest extends FormRequest
         return [
             'nome'=>'required|max:80|min:5|unique:servicos,nome',  
             'preco'=>'required|decimal:2',
-            'duracao'=>'required|numeric',  
-            'descricao'=>'required|max:200|min:10',
+            'duracao'=>'required|numeric|max:5|min:2',  
+            'descricao'=>'required|max:200|min:5',
             
         ];
     }
@@ -46,10 +46,12 @@ class ServicoFormRequest extends FormRequest
     'nome.max'=> 'O campo nome deve conter no maximo 80 caracteres',
     'nome.min'=> 'O campo nome deve conter no manimo 5 caracteres',
     'preco.required'=> 'Preço obrigatorio',
-    'preco.decimal'=> 'Preço deve conter só nuemros ',
+    'preco.decimal'=> 'Preço deve conter só nuemros ex:20.00 ',
     
     'duracao.required'=>'Duracao obrigatorio',
     'duracao.numeric'=>'Duracao é apenas numeros',
+    'duracao.max'=>'Duracao deve conter no maximo 5 caracteres',
+    'duracao.min'=>'Duracao deve conter no maximo 2 caracteres',
     
     'descricao.required'=>'Descrição obrigatorio',
     'descricao.max'=>'Descricao deve conter no maximo 200 caracteres',
