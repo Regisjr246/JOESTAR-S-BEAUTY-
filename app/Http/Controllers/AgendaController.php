@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\AgendaFormRequestUpdate;
 use App\Models\Agenda;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 
 use DateTime;
@@ -15,28 +16,37 @@ class AgendaController extends Controller
 
 
     public function cadastroAgenda(AgendaFormRequest $request)
-{
-    $dataHoraAgendamento = new DateTime($request->dataHora);
-    $dataAtual = new DateTime('now');
+    {
 
-    if ($dataHoraAgendamento < $dataAtual) {
+
+
+        $dataHoraAgendamento = new DateTime($request->dataHora);
+        $dataAtual = new DateTime('now');
+
+        if ($dataHoraAgendamento < $dataAtual) {
+            return response()->json([
+                "success" => false,
+                "message" => "Não é possível cadastrar um horário antes do dia atual"
+            ], 400);
+        }
+
+
+
+
+        $agendas =Agenda::create([
+           
+            'profissional_id' => $request->profissional_id,
+            
+            'dataHora' => $request->dataHora 
+            
+        ]);
         return response()->json([
-            "success" => false,
-            "message" => "Não é possível cadastrar um horário antes do dia atual"
-        ], 400);
+            "success" => true,
+            "message" => "Agenda cadastrado com sucesso",
+            "data" => $agendas
+        ], 200);
     }
 
-    $agendas = Agenda::create([
-        'profissional_id' => $request->profissional_id,
-        'dataHora' => $request->dataHora 
-    ]);
-
-    return response()->json([
-        "success" => true,
-        "message" => "Agenda cadastrada com sucesso",
-        "data" => $agendas
-    ], 200);
-}
 
 
 
@@ -87,14 +97,34 @@ class AgendaController extends Controller
 public function update(AgendaFormRequestUpdate $request){
     $agendamento = Agenda::find($request->id);
 
+
+
+
+    $dataHoraAgendamento = new DateTime($request->dataHora);
+    $dataAtual = new DateTime('now');
+
+    if ($dataHoraAgendamento < $dataAtual) {
+        return response()->json([
+            "success" => false,
+            "message" => "Não é possível cadastrar um horário antes do dia atual"
+        ], 400);
+    }
+
+
+
+
     if(!isset($agendamento)){
         return response()->json([
             "status" => false,
             "message" => "Agendamento não encontrado"
         ]);
     }
-
-    if(isset($request->profissional_id)){
+$profissional=Profissional::find($request->profissional_id);
+if(!isset($profissional)){return response()->json([
+    "status" => false,
+    "message" => "Profissional não encontrado"
+]);}
+    if(isset($profissional)){
         $agendamento->profissional_id = $request->profissional_id;
     }
     if(isset($request->dataHora)){
@@ -103,9 +133,9 @@ public function update(AgendaFormRequestUpdate $request){
     $agendamento->update();
 
     return response()->json([
-        "status" => false,
+        "status" => true,
         "message" => "agendamento atualizado"
-    ]);
+    ]) ;
 }
 
 
