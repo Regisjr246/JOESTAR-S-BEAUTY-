@@ -6,6 +6,7 @@ use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\AgendaFormRequestUpdate;
 use App\Models\Agenda;
 use App\Models\Profissional;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use DateTime;
@@ -21,8 +22,7 @@ class AgendaController extends Controller
 
 
         $dataHoraAgendamento = new DateTime($request->dataHora);
-        $dataAtual = new DateTime('now');
-
+        $dataAtual = Carbon::now('America/Sao_Paulo');
         if ($dataHoraAgendamento < $dataAtual) {
             return response()->json([
                 "success" => false,
@@ -101,7 +101,7 @@ public function update(AgendaFormRequestUpdate $request){
 
 
     $dataHoraAgendamento = new DateTime($request->dataHora);
-    $dataAtual = new DateTime('now');
+    $dataAtual = Carbon::now('America/Sao_Paulo');
 
     if ($dataHoraAgendamento < $dataAtual) {
         return response()->json([
@@ -148,43 +148,7 @@ if(!isset($profissional)){return response()->json([
 
 
 
-    //EDITANDO O AGENDAMENTO
-
-    public function updateAgenda(AgendaFormRequestUpdate $request)
-    {
-
-
-        $agendas = Agenda::find($request->id);
-
-        if (!isset($agendas)) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Agenda não encontrado'
-            ]);
-        }
-
-
-       
-
-        if (isset($request->profissional_id)) {
-            $agendas->profissional_id = $request->profissional_id;
-        }
-
-
-
-        if (isset($request->data_hora)) {
-            $agendas->dataHora = $request->data_hora;
-        }
-
-
-
-        $agendas->update();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Agenda ataulizado'
-        ]);
-    }
+    
 
 
 
