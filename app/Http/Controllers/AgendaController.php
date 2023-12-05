@@ -7,26 +7,43 @@ use App\Http\Requests\AgendaFormRequestUpdate;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 
+use DateTime;
+
 class AgendaController extends Controller
 {
     // AGENDA, :
 
 
     public function cadastroAgenda(AgendaFormRequest $request)
-    {
-        $agendas =Agenda::create([
-           
-            'profissional_id' => $request->profissional_id,
-            
-            'dataHora' => $request->dataHora
-            
-        ]);
+{
+    $dataHoraAgendamento = new DateTime($request->dataHora);
+    $dataAtual = new DateTime('now');
+
+    if ($dataHoraAgendamento < $dataAtual) {
         return response()->json([
-            "success" => true,
-            "message" => "Agenda cadastrado com sucesso",
-            "data" => $agendas
-        ], 200);
+            "success" => false,
+            "message" => "Não é possível cadastrar um horário antes do dia atual"
+        ], 400);
     }
+
+    $agendas = Agenda::create([
+        'profissional_id' => $request->profissional_id,
+        'dataHora' => $request->dataHora 
+    ]);
+
+    return response()->json([
+        "success" => true,
+        "message" => "Agenda cadastrada com sucesso",
+        "data" => $agendas
+    ], 200);
+}
+
+
+
+    
+    
+
+
 
 
     //VISUALIZAÇÃO DE por data
