@@ -1,6 +1,6 @@
 #   JOESTAR-S-BEAUTY com PHP e Laravel
 
-JOESTAR-S-BEAUTY  é um projeto de um pet shop integrado com API e retorno dos dados no formato JSON usando a linguagem PHP e o framework Laravel.
+JOESTAR-S-BEAUTY  é um projeto de uma barbearia integrado com API e retorno dos dados no formato JSON usando a linguagem PHP e o framework Laravel.
 
 ## Requisitos
 
