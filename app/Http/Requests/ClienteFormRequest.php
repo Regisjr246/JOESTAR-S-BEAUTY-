@@ -112,7 +112,7 @@ class ClienteFormRequest extends FormRequest
 
                         //BAIRRO
                         'bairro.required' => 'O campo bairro é obrigatorio',
-                        'bairro.required' => 'O campo bairro deve conter no maximo 100 caracteres',
+                        'bairro.max' => 'O campo bairro deve conter no maximo 100 caracteres',
 
                         //CEP
                         'cep.required' => 'O CEP  é obrigatorio',
