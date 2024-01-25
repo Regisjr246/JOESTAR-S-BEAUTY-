@@ -26,7 +26,7 @@ class ClienteFormRequest extends FormRequest
                 return [
 
                         'nome' => 'required|max:120|min:5',
-                        'celular' => 'required|max:11|min:10',
+                        'celular' => 'required|unique:clientes,celular|max:11|min:10',
                         'email' => 'required|unique:clientes,email|max:120',
                         'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
                         'dataNascimento' => 'required|date',

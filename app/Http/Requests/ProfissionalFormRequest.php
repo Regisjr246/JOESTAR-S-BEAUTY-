@@ -25,7 +25,7 @@ class ProfissionalFormRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:120|min:5',
-            'celular' => 'required|max:11|min:10',
+            'celular' => 'required|max:11|min:10|unique:profissionals,celular',
             'email' => 'required|max:120|unique:profissionals,email',
             'cpf' => 'required|max:11|min:11|unique:profissionals,cpf',
             'dataNascimento' => 'required|date',
@@ -67,7 +67,7 @@ class ProfissionalFormRequest extends FormRequest
             'celular.required' => 'O campo celular é obrigatorio',
             'celular.min' => 'O campo celular deve conter no minimo 11caracteres',
             'celular.max' => 'O campo celular deve conter no maximo 11 caracteres',
-            'celular.unique' => 'Celular já cadastrado, informe outr ',
+            'celular.unique' => 'Celular já cadastrado, informe outro ',
 
             //EMAIL
             'email.required' => 'O email celular é obrigatorio',
